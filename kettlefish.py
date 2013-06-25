@@ -50,8 +50,14 @@ def translate_remyspeak(text):
 
 p = argparse.ArgumentParser()
 p.add_argument('text', nargs="+", help='Remyspeak to be translated.')
+p.add_argument('-n', '--nohead', action='store_true',
+               help='Don\'t print the ASCII Remy head.')
 args = p.parse_args()
 
-print REMY
+if not args.nohead:
+    print REMY
+else:
+    print "\n"
+
 print translate_remyspeak(" ".join(args.text))
 print "\n"
