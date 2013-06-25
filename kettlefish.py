@@ -5,6 +5,23 @@
 
 import argparse
 
+REMY = """
+        :oooooooooooo+        
+     +hhmNNNNNNNNNNNNNhhy`    
+  .--yNNNNNNNNNNNNNNNNNNm:--  
+  oNNNNNyoooooooooooooNNNNNm` 
+`ymNNNNN+            .mNNNNNh:
+.mNNN+   .mNm`   oNN+   .mNNN+
+.mNNN+   `+o+    :oo-   .mNNN+
+.mNNNo```` .::::::: ````-mNNN+
+  oNNNNNNm`oh++++om`oNNNNNNm` 
+  oNNNNNo. oNNNNNNm``:NNNNNm` 
+  ./NNm:.  oNNNNNNm` `:yNNs-  
+    `+hhhhhmNNNNNNNhhhhhy.`   
+           :oooooo+           
+"""
+
+
 REMYSPEAK = {
         "what's good": "how are you",
         "kettle of fish": "matter",
@@ -35,4 +52,6 @@ p = argparse.ArgumentParser()
 p.add_argument('text', nargs="+", help='Remyspeak to be translated.')
 args = p.parse_args()
 
+print REMY
 print translate_remyspeak(" ".join(args.text))
+print "\n"
