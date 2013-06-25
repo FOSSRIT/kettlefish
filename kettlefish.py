@@ -46,7 +46,7 @@ def translate_remyspeak(text):
     text = text.lower()
     for item in REMYSPEAK:
         text = text.replace(item, REMYSPEAK[item])
-    return text
+    return text.capitalize()
 
 p = argparse.ArgumentParser()
 p.add_argument('text', nargs="+", help='Remyspeak to be translated.')
