@@ -4,6 +4,7 @@
 # TODO: Maintain capitalization upon translation.
 
 import argparse
+import os
 
 REMY = """
         :oooooooooooo+        
@@ -52,6 +53,8 @@ p = argparse.ArgumentParser()
 p.add_argument('text', nargs="+", help='Remyspeak to be translated.')
 p.add_argument('-n', '--nohead', action='store_true',
                help='Don\'t print the ASCII Remy head.')
+p.add_argument('-s', '--speak', action='store_true',
+               help='Say it')
 args = p.parse_args()
 
 if not args.nohead:
@@ -59,5 +62,9 @@ if not args.nohead:
 else:
     print "\n"
 
-print translate_remyspeak(" ".join(args.text))
+result = translate_remyspeak(" ".join(args.text))
+print result
 print "\n"
+
+if args.speak:
+    os.system("espeak %r" % result)
