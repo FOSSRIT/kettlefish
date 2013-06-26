@@ -44,6 +44,7 @@ REMYSPEAK = {
         "lolz": "*giggle*",
         "lolol": "haha",
         "lollerskates": "hilarious",
+        "minute": "long time",
         }
 
 def translate_remyspeak(text):
