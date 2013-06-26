@@ -41,6 +41,7 @@ REMYSPEAK = {
         "<buzzer>": "nope",
         "buzzer": "nope",
         "minute": "long time",
+        "loadstone": "bad luck",
         }
 
 def translate_remyspeak(text):
