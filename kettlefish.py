@@ -51,6 +51,10 @@ REMYSPEAK = {
         "lollerskates": "hilarious",
         "minute": "long time",
         "loadstone": "bad luck",
+        "beverage": "alcohol",
+        "beverages": "alcohol",
+        "may or may not be": "is",
+        "&": "leaves",
         }
 
 def translate_remyspeak(text):
