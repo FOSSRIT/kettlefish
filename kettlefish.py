@@ -36,6 +36,7 @@ REMYSPEAK = {
         "honey": "a hundred",
         "hunny": "a hundred",
         "hundo": "a hundred",
+        "step out": "smoke",
         "homeboy": "dude",
         "wat": "what",
         "chops": "skills",
