@@ -24,3 +24,12 @@ License
 -------
 
 AGPL / Garlands of Freedom
+
+Contributors
+------------
+
+-   David Gay
+
+-   Ralph Bean
+
+-   Luke Macken
