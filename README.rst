@@ -17,8 +17,13 @@ Translate Remyspeak with characters like ``'`` and ``?``::
 
 Translate without displaying the ACSII Remy head::
 
-    # Can use -n or --nohead option
-    ./kettlefish.py Fuck this. --nohead
+    # Can use -n or --nohead option.
+    ./kettlefish.py Fuck this. -n
+
+Translate with text-to-speech via espeak::
+
+    # Can use -s or --speak option.
+    ./kettlefish.py wat -s
 
 License
 -------
