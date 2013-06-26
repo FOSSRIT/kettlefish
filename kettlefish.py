@@ -40,6 +40,9 @@ REMYSPEAK = {
         "fuck this": "education is important",
         "<buzzer>": "nope",
         "buzzer": "nope",
+        "lolz": "*giggle*",
+        "lolol": "haha",
+        "lollerskates": "hilarious",
         }
 
 def translate_remyspeak(text):
