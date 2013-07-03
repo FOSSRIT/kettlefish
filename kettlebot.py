@@ -43,7 +43,7 @@ class KettleBot(IRCClient):
         """This will get called when the bot receives a message."""
         user = user.split('!', 1)[0]
 
-        if user == 'Qalthos': #'decause':
+        if user == 'decause':
             translated = translate_remyspeak(msg)
             if not msg.lower() == translated.lower():
                 self.msg(channel, 'What Remy meant to say was: {}'.format(
