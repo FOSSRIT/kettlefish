@@ -46,8 +46,8 @@ class KettleBot(IRCClient):
         if user == 'decause':
             translated = translate_remyspeak(msg)
             if not msg.lower() == translated.lower():
-                self.msg(channel, 'What Remy meant to say was: {}'.format(
-                                    translated))
+                self.msg(channel, 'What {} meant to say was: {}'.format(
+                                    user, translated))
             # For testing
             print(msg)
 
