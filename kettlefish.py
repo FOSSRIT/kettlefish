@@ -64,22 +64,23 @@ def translate_remyspeak(text):
         text = text.replace(item, REMYSPEAK[item])
     return text.capitalize()
 
-p = argparse.ArgumentParser()
-p.add_argument('text', nargs="+", help='Remyspeak to be translated.')
-p.add_argument('-n', '--nohead', action='store_true',
-               help='Don\'t print the ASCII Remy head.')
-p.add_argument('-s', '--speak', action='store_true',
-               help='Say it')
-args = p.parse_args()
+if __name__ == '__main__':
+    p = argparse.ArgumentParser()
+    p.add_argument('text', nargs="+", help='Remyspeak to be translated.')
+    p.add_argument('-n', '--nohead', action='store_true',
+                   help='Don\'t print the ASCII Remy head.')
+    p.add_argument('-s', '--speak', action='store_true',
+                   help='Say it')
+    args = p.parse_args()
 
-if not args.nohead:
-    print REMY
-else:
+    if not args.nohead:
+        print REMY
+    else:
+        print "\n"
+
+    result = translate_remyspeak(" ".join(args.text))
+    print result
     print "\n"
 
-result = translate_remyspeak(" ".join(args.text))
-print result
-print "\n"
-
-if args.speak:
-    os.system("espeak %r" % result)
+    if args.speak:
+        os.system("espeak %r" % result)
