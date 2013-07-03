@@ -11,6 +11,7 @@
 #    You should have received a copy of the GNU General Public License
 #    along with kettlefish.  If not, see <http://www.gnu.org/licenses/>.
 
+from __future__ import print_function
 
 from twisted.words.protocols.irc import IRCClient
 from twisted.internet.protocol import ReconnectingClientFactory
@@ -32,11 +33,11 @@ class KettleBot(IRCClient):
 
     def joined(self, channel):
         """This will get called when the bot joins the channel."""
-        print "Joined %s" % channel
+        print("Joined %s" % channel)
 
     def left(self, channel):
         """This will get called when the bot leaves the channel."""
-        print "Left %s" % channel
+        print("Left %s" % channel)
 
     def privmsg(self, user, channel, msg):
         """This will get called when the bot receives a message."""
@@ -47,7 +48,8 @@ class KettleBot(IRCClient):
             if not msg.lower() == translated.lower():
                 self.msg(channel, 'What Remy meant to say was: {}'.format(
                                     translated))
-            print msg
+            # For testing
+            print(msg)
 
 
 class KettleBotFactory(ReconnectingClientFactory):
