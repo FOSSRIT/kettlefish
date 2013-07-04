@@ -33,8 +33,10 @@ AGPL / Garlands of Freedom
 Contributors
 ------------
 
--   David Gay
+-   David Gay (oddshocks)
 
--   Ralph Bean
+-   Ralph Bean (threebean)
 
--   Luke Macken
+-   Luke Macken (lmacken)
+
+-   Nate Case (Qalthos)
