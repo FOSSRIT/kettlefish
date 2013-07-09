@@ -7,19 +7,19 @@ import string
 
 
 REMY = """
-        :oooooooooooo+        
-     +hhmNNNNNNNNNNNNNhhy`    
-  .--yNNNNNNNNNNNNNNNNNNm:--  
-  oNNNNNyoooooooooooooNNNNNm` 
+        :oooooooooooo+
+     +hhmNNNNNNNNNNNNNhhy`
+  .--yNNNNNNNNNNNNNNNNNNm:--
+  oNNNNNyoooooooooooooNNNNNm`
 `ymNNNNN+            .mNNNNNh:
 .mNNN+   .mNm`   oNN+   .mNNN+
 .mNNN+   `+o+    :oo-   .mNNN+
 .mNNNo```` .::::::: ````-mNNN+
-  oNNNNNNm`oh++++om`oNNNNNNm` 
-  oNNNNNo. oNNNNNNm``:NNNNNm` 
-  ./NNm:.  oNNNNNNm` `:yNNs-  
-    `+hhhhhmNNNNNNNhhhhhy.`   
-           :oooooo+           
+  oNNNNNNm`oh++++om`oNNNNNNm`
+  oNNNNNo. oNNNNNNm``:NNNNNm`
+  ./NNm:.  oNNNNNNm` `:yNNs-
+    `+hhhhhmNNNNNNNhhhhhy.`
+           :oooooo+
 """
 
 
