@@ -1,10 +1,10 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
 
-# TODO: Maintain capitalization upon translation.
-
 import argparse
 import os
+import string
+
 
 REMY = """
         :oooooooooooo+        
@@ -59,10 +59,20 @@ REMYSPEAK = {
         }
 
 def translate_remyspeak(text):
+    cap_map = [str.lower, str.capitalize, str.upper]
+    # figure out casing of input
+    if text[0] in string.lowercase:
+        case = 0
+    elif text[1] in string.lowercase:
+        case = 1
+    else:
+        case = 2
+
     text = text.lower()
     for item in REMYSPEAK:
         text = text.replace(item, REMYSPEAK[item])
-    return text.capitalize()
+
+    return cap_map[case](text)
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser()
