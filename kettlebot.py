@@ -48,8 +48,6 @@ class KettleBot(IRCClient):
             if not msg.lower() == translated.lower():
                 self.msg(channel, 'What {} meant to say was: {}'.format(
                                     user, translated))
-            # For testing
-            print(msg)
 
 
 class KettleBotFactory(ReconnectingClientFactory):
