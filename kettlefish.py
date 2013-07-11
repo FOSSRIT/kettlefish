@@ -57,6 +57,7 @@ REMYSPEAK = {
         "beverages": "alcohol",
         "may or may not be": "is",
         "&": "leaves",
+        "hosed": "destroyed",
         }
 
 def translate_remyspeak(text):
