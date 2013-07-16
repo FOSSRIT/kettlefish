@@ -3,6 +3,7 @@
 
 import argparse
 import os
+import re
 import string
 
 
@@ -70,7 +71,7 @@ def translate_remyspeak(text):
 
     text = text.lower()
     for item in REMYSPEAK:
-        text = text.replace(item, REMYSPEAK[item])
+        text = re.sub(r'\b{}\b'.format(item), REMYSPEAK[item], text)
 
     return cap_map[case](text)
 
