@@ -56,6 +56,8 @@ REMYSPEAK = {
         "beverage": "alcohol",
         "beverages": "alcohol",
         "may or may not be": "is",
+        'tomo': 'tomorrow',
+        'def': 'definitely',
         "&": "leaves",
         }
 
