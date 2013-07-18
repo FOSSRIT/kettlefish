@@ -35,7 +35,6 @@ REMYSPEAK = {
         "loops": "current tasks",
         "motherfucker": "fellow",
         "biz": "five",
-        "honey": "a hundred",
         "hunny": "a hundred",
         "hundo": "a hundred",
         "step out": "smoke",
