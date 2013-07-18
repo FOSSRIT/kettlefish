@@ -12,6 +12,7 @@
 #    along with kettlefish.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import print_function
+import re
 
 from twisted.words.protocols.irc import IRCClient
 from twisted.internet.protocol import ReconnectingClientFactory
@@ -45,9 +46,10 @@ class KettleBot(IRCClient):
 
         if user == 'decause':
             translated = translate_remyspeak(msg)
+            display = re.sub(r'(\+\+)|(--)', '', translated)
             if not msg.lower() == translated.lower():
                 self.msg(channel, 'What {} meant to say was: {}'.format(
-                                    user, translated))
+                                    user, display))
 
 
 class KettleBotFactory(ReconnectingClientFactory):
