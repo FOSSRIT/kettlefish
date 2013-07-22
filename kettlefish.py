@@ -60,6 +60,8 @@ REMYSPEAK = {
         'def': 'definitely',
         "&": "leaves",
         "hosed": "destroyed",
+        "EoB": "End of Business",
+        "EOB": "End Of Business",
         }
 
 def translate_remyspeak(text):
