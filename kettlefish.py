@@ -61,6 +61,9 @@ REMYSPEAK = {
         "&": "leaves",
         "hosed": "destroyed",
         "EoB": "End of Business",
+        "moar": "additional",
+        "newbiz": "new orders of business",
+        "G/B/U": "Good/Bad/Ugly",
         }
 
 def translate_remyspeak(text):
