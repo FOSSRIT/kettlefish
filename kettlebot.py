@@ -51,6 +51,9 @@ class KettleBot(IRCClient):
                 self.msg(channel, 'What {} meant to say was: {}'.format(
                                     user, display))
 
+        if channel == self.nickname:
+            self.msg(user, translate_remyspeak(msg))
+
 
 class KettleBotFactory(ReconnectingClientFactory):
     active_bot = None
