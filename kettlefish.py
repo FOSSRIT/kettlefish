@@ -28,6 +28,7 @@ REMY = """
 # These have to go first, or they will get overridden by later keys.
 REMYSPEAK = collections.OrderedDict({
         "(ye )?new(e)?( )?biz": "new orders of business",
+        "(ye )?old(e)?( )?biz": "previously discussed business",
         "cycle on": "spend time on",
         "open loop": "unfinished task",
 })
