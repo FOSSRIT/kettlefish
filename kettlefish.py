@@ -2,6 +2,7 @@
 # -*- coding: utf8 -*-
 
 import argparse
+import collections
 import os
 import re
 import string
@@ -24,14 +25,19 @@ REMY = """
 """
 
 
-REMYSPEAK = {
+# These have to go first, or they will get overridden by later keys.
+REMYSPEAK = collections.OrderedDict({
+        "(ye )?new(e)?( )?biz": "new orders of business",
+        "cycle on": "spend time on",
+        "open loop": "unfinished task",
+})
+# Order-insensitive keys
+REMYSPEAK.update({
         "what's good": "how are you",
         "kettle of fish": "matter",
         "cycle": "period of time",
-        "cycle on": "spend time on",
         "cycles": "time available to spend on work",
         "loop": "task",
-        "open loop": "unfinished task",
         "loops": "current tasks",
         "motherfucker": "fellow",
         "biz": "five",
@@ -62,9 +68,8 @@ REMYSPEAK = {
         "hosed": "destroyed",
         "EoB": "End of Business",
         "moar": "additional",
-        "newbiz": "new orders of business",
         "G/B/U": "Good/Bad/Ugly",
-        }
+})
 
 def translate_remyspeak(text):
     cap_map = [str.lower, str.capitalize, str.upper]
