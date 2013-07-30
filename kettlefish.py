@@ -56,7 +56,7 @@ REMYSPEAK.update({
     "lolz": "*giggle*",
     "lolol": "haha",
     "lollerskates": "hilarious",
-    "a minute": "a long time",
+    "(a|one) minute": "a long time",
     "lo(ad|de)stone": "bad luck",
     "beverage(s)?": "alcohol",
     "may or may not be": "is",
