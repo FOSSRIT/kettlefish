@@ -75,8 +75,10 @@ def translate_remyspeak(text):
     if not text:
         return text
     if text[0] in string.lowercase:
+        # Ex: 'a'
         case = 0
-    elif text[1] in string.lowercase:
+    elif text[1] in string.lowercase or text[1] not in string.letters:
+        # Ex: 'Aa' or 'A '
         case = 1
     else:
         case = 2
