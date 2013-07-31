@@ -67,6 +67,7 @@ REMYSPEAK.update({
     "EoB": "End of Business",
     "moar": "additional",
     "G/B/U": "Good/Bad/Ugly",
+    "(1337|leet|l337|l33t)z(o|0)r": "advanced hacker",
 })
 
 def translate_remyspeak(text):
