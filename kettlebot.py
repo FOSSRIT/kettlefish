@@ -44,6 +44,10 @@ class KettleBot(IRCClient):
         """This will get called when the bot receives a message."""
         user = user.split('!', 1)[0]
 
+        if msg.strip() == 'kettlefish--' and channel != self.nickname:
+            self.msg(channel, '%s--' % user)
+            return
+
         if user == 'decause':
             translated = translate_remyspeak(msg)
             display = re.sub(r'(\+\+)|(--)', '', translated)
