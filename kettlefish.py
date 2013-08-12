@@ -68,6 +68,9 @@ REMYSPEAK.update({
     "moar": "additional",
     "G/B/U": "Good/Bad/Ugly",
     "(1337|leet|l337|l33t)z(o|0)r": "advanced hacker",
+    "dece": "decent",
+    "qual": "quality",
+    "holy business": "the situation is getting out of hand",
 })
 
 def translate_remyspeak(text):
