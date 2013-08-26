@@ -70,7 +70,7 @@ REMYSPEAK.update({
     "(1337|leet|l337|l33t)z(o|0)r": "advanced hacker",
     "dece": "decent",
     "qual": "quality",
-    "holy business": "the situation is getting out of hand",
+    "holy business": "this situation is getting out of hand",
     "(ob|ab)sanity": "absurd insanity",
 })
 
