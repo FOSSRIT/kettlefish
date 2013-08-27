@@ -52,7 +52,7 @@ class KettleBot(IRCClient):
             translated = translate_remyspeak(msg)
             display = re.sub(r'(\+\+)|(--)', '', translated)
             if not msg.lower() == translated.lower():
-                self.msg(channel, 'What {} meant to say was: {}'.format(
+                self.msg(channel, 'What {} means is: {}'.format(
                                     user, display))
 
         if channel == self.nickname:
