@@ -62,7 +62,7 @@ REMYSPEAK.update({
     "may or may not be": "is",
     'tomo': 'tomorrow',
     'def': 'definitely',
-    "&": "leaves",
+    "&": "steps into the background",
     "hosed": "destroyed",
     "EoB": "End of Business",
     "moar": "additional",
