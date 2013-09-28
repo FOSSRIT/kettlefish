@@ -28,7 +28,7 @@ Translate with text-to-speech via espeak::
 License
 -------
 
-AGPL / Garlands of Freedom
+AGPL
 
 Contributors
 ------------
