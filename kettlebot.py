@@ -53,7 +53,28 @@ class KettleBot(IRCClient):
         """This will get called when the bot receives a message."""
         user = user.split('!', 1)[0]
 
-        if user == 'decause':
+        shushify = re.search('{}: (un)?shush'.format(self.nickname), msg)
+        if shushify:
+            args = msg.split()
+            if shushify.groups()[0]:
+                # Group 0: turn shush off
+                self.quiet = None
+                self.msg(channel, 'universal translation matrix re-enabled')
+            else:
+                m = 5
+                if len(args) > 2:
+                    try:
+                        m = int(args[2])
+                    except ValueError:
+                        pass
+                self.quiet = datetime.datetime.now() + \
+                             datetime.timedelta(minutes=m)
+                self.msg(channel, 'quiet time')
+
+        elif channel == self.nickname:
+            self.msg(user, translate_remyspeak(msg))
+
+        elif user == 'decause' and self.can_talk(channel):
             translated = translate_remyspeak(msg)
             display = re.sub(r'(\+\+)|(--)', '', translated)
             if not msg.lower() == translated.lower():
@@ -61,9 +82,7 @@ class KettleBot(IRCClient):
                                     user, display))
 
         pattern = re.compile(r'<(\w+)>')
-        if channel == self.nickname:
-            self.msg(user, translate_remyspeak(msg))
-        elif re.match(pattern, msg.lower()):
+        if re.match(pattern, msg.lower()) and self.can_talk(channel):
             response = re.sub(pattern, r'</\1>', msg.lower())
             self.msg(channel, response)
 
