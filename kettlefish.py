@@ -58,7 +58,7 @@ REMYSPEAK.update({
     "lollerskates": "hilarious",
     "(a|one) minute": "a long time",
     "lo(ad|de)stone": "bad luck",
-    "beverage(s)?": "alcohol",
+    "beverage(s)?": "alcohol\\1",
     "may or may not be": "is",
     'tomo': 'tomorrow',
     'def': 'definitely',
