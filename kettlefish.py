@@ -77,16 +77,19 @@ REMYSPEAK.update({
 def translate_remyspeak(text):
     cap_map = [str.lower, str.capitalize, str.upper]
     # figure out casing of input
-    if not text:
-        return text
-    if text[0] in string.lowercase:
-        # Ex: 'a'
+    try:
+        if not text:
+            return text
+        if text[0] in string.lowercase:
+            # Ex: 'a'
+            case = 0
+        elif text[1] in string.lowercase or text[1] not in string.letters:
+            # Ex: 'Aa' or 'A '
+            case = 1
+        else:
+            case = 2
+    except:
         case = 0
-    elif text[1] in string.lowercase or text[1] not in string.letters:
-        # Ex: 'Aa' or 'A '
-        case = 1
-    else:
-        case = 2
 
     text = text.lower()
     for item in REMYSPEAK:
