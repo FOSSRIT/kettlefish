@@ -38,12 +38,12 @@ class KettleBot(IRCClient):
         """This will get called when the bot joins the channel."""
         print("Joined %s" % channel)
 
-    def can_talk(self, channel):
+    def can_talk(self, channel, message):
         if self.quiet and self.quiet > datetime.datetime.now():
-            return False
-        elif self.quiet:
+            return None
+        else:
             self.quiet = None
-        return True
+            self.msg(channel, message)
 
     def left(self, channel):
         """This will get called when the bot leaves the channel."""
@@ -74,17 +74,17 @@ class KettleBot(IRCClient):
         elif channel == self.nickname:
             self.msg(user, translate_remyspeak(msg))
 
-        elif user == 'decause' and self.can_talk(channel):
+        elif user == 'decause':
             translated = translate_remyspeak(msg)
             display = re.sub(r'(\+\+)|(--)', '', translated)
             if not msg.lower() == translated.lower():
-                self.msg(channel, 'What {} means is: {}'.format(
-                                    user, display))
+                self.can_talk(channel, 'What {} means is: {}'.format(
+                         user, display))
 
         pattern = re.compile(r'<(\w+)>')
-        if re.match(pattern, msg.lower()) and self.can_talk(channel):
+        if re.match(pattern, msg.lower()):
             response = re.sub(pattern, r'</\1>', msg.lower())
-            self.msg(channel, response)
+            self.can_talk(channel, response)
 
 
 class KettleBotFactory(ReconnectingClientFactory):
