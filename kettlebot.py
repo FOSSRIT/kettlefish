@@ -12,6 +12,7 @@
 #    along with kettlefish.  If not, see <http://www.gnu.org/licenses/>.
 
 from __future__ import print_function
+import datetime
 import re
 
 from twisted.words.protocols.irc import IRCClient
@@ -26,6 +27,7 @@ class KettleBot(IRCClient):
     versionNum = 1
     sourceURL = "http://github.com/oddshocks/kettlefish"
     lineRate = 1
+    quiet = None
 
     def signedOn(self):
         """Called when bot has succesfully signed on to server."""
@@ -35,6 +37,13 @@ class KettleBot(IRCClient):
     def joined(self, channel):
         """This will get called when the bot joins the channel."""
         print("Joined %s" % channel)
+
+    def can_talk(self, channel):
+        if self.quiet and self.quiet > datetime.datetime.now():
+            return False
+        elif self.quiet:
+            self.quiet = None
+        return True
 
     def left(self, channel):
         """This will get called when the bot leaves the channel."""
