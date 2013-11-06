@@ -51,8 +51,12 @@ class KettleBot(IRCClient):
                 self.msg(channel, 'What {} means is: {}'.format(
                                     user, display))
 
+        pattern = re.compile(r'<(\w+)>')
         if channel == self.nickname:
             self.msg(user, translate_remyspeak(msg))
+        elif re.match(pattern, msg.lower()):
+            response = re.sub(pattern, r'</\1>', msg.lower())
+            self.msg(channel, response)
 
 
 class KettleBotFactory(ReconnectingClientFactory):
