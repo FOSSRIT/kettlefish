@@ -29,6 +29,9 @@ class KettleBot(IRCClient):
     lineRate = 1
     quiet = None
 
+    karma = re.compile(r'\+\+|--')
+    xml = re.compile(r'<([\w]+)(?:\s[\w\s=\'"]*)?>')
+
     def signedOn(self):
         """Called when bot has succesfully signed on to server."""
         self.join(self.factory.channel)
@@ -76,14 +79,14 @@ class KettleBot(IRCClient):
 
         elif user == 'decause':
             translated = translate_remyspeak(msg)
-            display = re.sub(r'(\+\+)|(--)', '', translated)
+            display = self.karma.sub('', translated)
             if not msg.lower() == translated.lower():
                 self.can_talk(channel, 'What {} means is: {}'.format(
                          user, display))
 
-        pattern = re.compile(r'<(\w+)>')
-        if re.match(pattern, msg.lower()):
-            response = re.sub(pattern, r'</\1>', msg.lower())
+        tag_list = self.xml.findall(msg.lower())
+        if tag_list:
+            response = ''.join('</'+tag+'>' for tag in tag_list[::-1])
             self.can_talk(channel, response)
 
 
