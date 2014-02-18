@@ -31,6 +31,7 @@ class KettleBot(IRCClient):
 
     karma = re.compile(r'\+\+|--')
     xml = re.compile(r'<([\w]+)(?:\s[\w\s=\'"]*)?>')
+    xml_close = re.compile(r'</([\w]+)(?:\s[\w\s=\'"]*)?>')
 
     def signedOn(self):
         """Called when bot has succesfully signed on to server."""
@@ -85,6 +86,10 @@ class KettleBot(IRCClient):
                          user, display))
 
         tag_list = self.xml.findall(msg.lower())
+        untag_list = self.xml_close.findall(msg.lower())
+        for tag in untag_list:
+            if tag in tag_list:
+                tag_list.remove(tag)
         if tag_list:
             response = ''.join('</'+tag+'>' for tag in tag_list[::-1])
             self.can_talk(channel, response)
