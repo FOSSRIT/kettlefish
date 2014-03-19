@@ -57,7 +57,7 @@ class KettleBot(IRCClient):
         """This will get called when the bot receives a message."""
         user = user.split('!', 1)[0]
 
-        shushify = re.search('{}: (un)?shush'.format(self.nickname), msg)
+        shushify = re.match('{}: (un)?shush'.format(self.nickname), msg)
         if shushify:
             args = msg.split()
             if shushify.groups()[0]:
