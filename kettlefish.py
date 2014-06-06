@@ -26,14 +26,14 @@ REMY = """
 
 
 # These have to go first, or they will get overridden by later keys.
-REMYSPEAK = collections.OrderedDict({
+_REMYSPEAK = collections.OrderedDict({
     "(ye )?new(e)?( )?biz": "new orders of business",
     "(ye )?old(e)?( )?biz": "previously discussed business",
     "cycle on": "spend time on",
     "open loop": "unfinished task",
 })
 # Order-insensitive keys
-REMYSPEAK.update({
+_REMYSPEAK.update({
     "what's good": "how are you",
     "kettle of fish": "matter",
     "cycle": "period of time",
@@ -74,9 +74,14 @@ REMYSPEAK.update({
     "(ob|ab)sanity": "absurd insanity",
 })
 
+REMYSPEAK = collections.OrderedDict()
+for key, repl in _REMYSPEAK.items():
+    REMYSPEAK[re.compile(r'\b{}\b'.format(key), re.IGNORECASE)] = repl
+del _REMYSPEAK
+
 def translate_remyspeak(text):
     for item in REMYSPEAK:
-        text = re.sub(r'\b{}\b'.format(item), REMYSPEAK[item], text, re.IGNORECASE)
+        text = item.sub(REMYSPEAK[item], text)
     return text
 
 if __name__ == '__main__':
