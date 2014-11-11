@@ -96,6 +96,10 @@ class KettleBot(IRCClient):
                 response = ''.join('</'+tag+'>' for tag in tag_list[::-1])
                 self.can_talk(channel, response)
 
+    def action(self, user, channel, msg):
+        if user == 'decause' and msg == '&':
+            self.can_talk(channel, '{} steps into the background'.format(user))
+
 
 class KettleBotFactory(ReconnectingClientFactory):
     active_bot = None
