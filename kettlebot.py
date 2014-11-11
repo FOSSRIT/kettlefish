@@ -86,14 +86,15 @@ class KettleBot(IRCClient):
                 self.can_talk(channel, 'What {} means is: {}'.format(
                          user, display))
 
-        tag_list = self.xml.findall(msg.lower())
-        untag_list = self.xml_close.findall(msg.lower())
-        for tag in untag_list:
-            if tag in tag_list:
-                tag_list.remove(tag)
-        if tag_list:
-            response = ''.join('</'+tag+'>' for tag in tag_list[::-1])
-            self.can_talk(channel, response)
+        else:
+            tag_list = self.xml.findall(msg.lower())
+            untag_list = self.xml_close.findall(msg.lower())
+            for tag in untag_list:
+                if tag in tag_list:
+                    tag_list.remove(tag)
+            if tag_list:
+                response = ''.join('</'+tag+'>' for tag in tag_list[::-1])
+                self.can_talk(channel, response)
 
 
 class KettleBotFactory(ReconnectingClientFactory):
