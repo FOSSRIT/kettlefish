@@ -68,7 +68,8 @@ class KettleBot(IRCClient):
                 m = 5
                 if len(args) > 2:
                     try:
-                        m = int(args[2])
+                        # Don't shush longer than 90 minutes
+                        m = min(int(args[2]), 90)
                     except ValueError:
                         pass
                 self.quiet = datetime.datetime.now() + \
