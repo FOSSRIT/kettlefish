@@ -58,6 +58,7 @@ class KettleBot(IRCClient):
         user = user.split('!', 1)[0]
 
         shushify = re.match('{}: (un)?shush'.format(self.nickname), msg)
+        thanks = re.search('({0}.*thanks)|(thanks.*{0})'.format(self.nickname), msg)
         if shushify:
             args = msg.split()
             if shushify.groups()[0]:
@@ -85,6 +86,9 @@ class KettleBot(IRCClient):
             if not msg.lower() == translated.lower():
                 self.can_talk(channel, 'What {} means is: {}'.format(
                          user, display))
+
+        elif thanks:
+            self.can_talk(channel, "{}: You're welcome!".format(user))
 
         else:
             tag_list = self.xml.findall(msg.lower())
