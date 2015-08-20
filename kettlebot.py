@@ -25,7 +25,7 @@ class KettleBot(IRCClient):
     bot_name = "kettlefish"
     channel = "#rit-foss"
     versionNum = 1
-    sourceURL = "http://github.com/oddshocks/kettlefish"
+    sourceURL = "http://github.com/FOSSRIT/kettlefish"
     lineRate = 1
     quiet = None
 
