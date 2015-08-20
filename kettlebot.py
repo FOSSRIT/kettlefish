@@ -57,12 +57,18 @@ class KettleBot(IRCClient):
         """This will get called when the bot receives a message."""
         user = user.split('!', 1)[0]
 
+        # Regexes to handle non-kettlefish actions
         shushify = re.match('{}: (un)?shush'.format(self.nickname), msg)
         thanks = re.search('({0}.*thanks)|(thanks.*{0})'.format(self.nickname), msg)
-        if shushify:
+        # Anything PM-ed to kettlefish will be translated
+        if channel == self.nickname:
+            self.msg(user, translate_remyspeak(msg))
+
+        # Handle being told to shush or unshush
+        elif shushify:
             args = msg.split()
+            # This tests the existence of the 'un-' prefix
             if shushify.groups()[0]:
-                # Group 0: turn shush off
                 self.quiet = None
                 self.msg(channel, 'universal translation matrix re-enabled')
             else:
@@ -77,8 +83,6 @@ class KettleBot(IRCClient):
                              datetime.timedelta(minutes=m)
                 self.msg(channel, 'quiet time')
 
-        elif channel == self.nickname:
-            self.msg(user, translate_remyspeak(msg))
 
         elif user == 'decause':
             translated = translate_remyspeak(msg)
@@ -87,6 +91,7 @@ class KettleBot(IRCClient):
                 self.can_talk(channel, 'What {} means is: {}'.format(
                          user, display))
 
+        # I provide a valuable service to the community!
         elif thanks:
             self.can_talk(channel, "{}: You're welcome!".format(user))
 
