@@ -60,6 +60,9 @@ class KettleBot(IRCClient):
         # Regexes to handle non-kettlefish actions
         shushify = re.match('{}: (un)?shush'.format(self.nickname), msg)
         thanks = re.search('({0}.*thanks)|(thanks.*{0})'.format(self.nickname), msg)
+        tag_list = self.xml.findall(msg.lower())
+        untag_list = self.xml_close.findall(msg.lower())
+
         # Anything PM-ed to kettlefish will be translated
         if channel == self.nickname:
             self.msg(user, translate_remyspeak(msg))
@@ -83,6 +86,17 @@ class KettleBot(IRCClient):
                              datetime.timedelta(minutes=m)
                 self.msg(channel, 'quiet time')
 
+        # I provide a valuable service to the community!
+        elif thanks:
+            self.can_talk(channel, "{}: You're welcome!".format(user))
+
+        elif tag_list:
+            for tag in untag_list:
+                if tag in tag_list:
+                    tag_list.remove(tag)
+            if tag_list:
+                response = ''.join('</'+tag+'>' for tag in tag_list[::-1])
+                self.can_talk(channel, response)
 
         elif user == 'decause':
             translated = translate_remyspeak(msg)
@@ -90,20 +104,6 @@ class KettleBot(IRCClient):
             if not msg.lower() == translated.lower():
                 self.can_talk(channel, 'What {} means is: {}'.format(
                          user, display))
-
-        # I provide a valuable service to the community!
-        elif thanks:
-            self.can_talk(channel, "{}: You're welcome!".format(user))
-
-        else:
-            tag_list = self.xml.findall(msg.lower())
-            untag_list = self.xml_close.findall(msg.lower())
-            for tag in untag_list:
-                if tag in tag_list:
-                    tag_list.remove(tag)
-            if tag_list:
-                response = ''.join('</'+tag+'>' for tag in tag_list[::-1])
-                self.can_talk(channel, response)
 
     def action(self, user, channel, msg):
         if user == 'decause' and msg == '&':
