@@ -70,6 +70,7 @@ _REMYSPEAK.update({
     "qual": "quality",
     "holy business": "this situation is getting out of hand",
     "(ob|ab)sanity": "absurd insanity",
+    "credit": "blame",
 })
 
 REMYSPEAK = collections.OrderedDict()
