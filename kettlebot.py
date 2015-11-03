@@ -103,8 +103,10 @@ class KettleBot(IRCClient):
                     self.victims.remove(user)
                 except ValueError:
                     pass
+                self.describe(channel, 'recognizes that {} hates fun'.format(user))
             elif optional.groups()[0] == 'in':
                 self.victims.append(user)
+                self.describe(channel, 'has noted that {} is a cool person'.format(user))
             with open('victims.json', 'w') as jfile:
                 json.dump(self.victims, jfile)
 
