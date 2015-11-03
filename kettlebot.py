@@ -13,6 +13,7 @@
 
 from __future__ import print_function
 import datetime
+import json
 import re
 
 from twisted.words.protocols.irc import IRCClient
@@ -31,6 +32,9 @@ class KettleBot(IRCClient):
 
     def __init__(self, *args, **kwargs):
         super(self, KettleBot).__init__(*args, **kwargs)
+
+        with open('victims.json') as jfile:
+            self.victims = json.load(jfile)
 
         self.quiet = None
         self.karma = re.compile(r'\+\+|--')
@@ -63,6 +67,7 @@ class KettleBot(IRCClient):
 
         # Regexes to handle non-kettlefish actions
         shushify = re.match('{}: (un)?shush(.*)'.format(self.nickname), msg)
+        optional = re.match('{}: opt (in|out)$'.format(self.nickname), msg)
         thanks = re.search('({0}.*thanks)|(thanks.*{0})'.format(self.nickname), msg)
         tag_list = self.xml.findall(msg.lower())
         untag_list = self.xml_close.findall(msg.lower())
@@ -93,6 +98,18 @@ class KettleBot(IRCClient):
         elif thanks:
             self.can_talk(channel, "{}: You're welcome!".format(user))
 
+        # But not that valuable...
+        elif optional:
+            if optional.groups()[0] == 'out':
+                try:
+                    self.victims.remove(user)
+                except ValueError:
+                    pass
+            elif optional.groups()[0] == 'in':
+                self.victims.append(user)
+            with open('victims.json', 'w') as jfile:
+                json.dump(self.victims, jfile)
+
         elif tag_list:
             for tag in untag_list:
                 if tag in tag_list:
@@ -101,7 +118,7 @@ class KettleBot(IRCClient):
                 response = ''.join('</' + tag + '>' for tag in tag_list[::-1])
                 self.can_talk(channel, response)
 
-        elif user == 'decause':
+        elif user in self.victims:
             translated = translate_remyspeak(msg)
             display = self.karma.sub('', translated)
             if not msg.lower() == translated.lower():
