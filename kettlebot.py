@@ -21,17 +21,21 @@ from twisted.internet import reactor
 
 from kettlefish import translate_remyspeak
 
+
 class KettleBot(IRCClient):
     bot_name = "kettlefish"
     channel = "#rit-foss"
     versionNum = 1
     sourceURL = "http://github.com/FOSSRIT/kettlefish"
     lineRate = 1
-    quiet = None
 
-    karma = re.compile(r'\+\+|--')
-    xml = re.compile(r'<([\w]+)(?:\s[\w\s=\'"]*)?>')
-    xml_close = re.compile(r'</([\w]+)(?:\s[\w\s=\'"]*)?>')
+    def __init__(self, *args, **kwargs):
+        super(self, KettleBot).__init__(*args, **kwargs)
+
+        self.quiet = None
+        self.karma = re.compile(r'\+\+|--')
+        self.xml = re.compile(r'<([\w]+)(?:\s[\w\s=\'"]*)?>')
+        self.xml_close = re.compile(r'</([\w]+)(?:\s[\w\s=\'"]*)?>')
 
     def signedOn(self):
         """Called when bot has succesfully signed on to server."""
