@@ -72,7 +72,7 @@ _REMYSPEAK.update({
     "holy business": "this situation is getting out of hand",
     "(ob|ab)sanity": "absurd insanity",
     "credit": "blame",
-    "#ianal": "I am not a lawyer, and this does not constitute legal advice",
+    "ianal": "I am not a lawyer, and this does not constitute legal advice",
 })
 
 REMYSPEAK = collections.OrderedDict()
