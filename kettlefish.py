@@ -46,6 +46,7 @@ _REMYSPEAK.update({
     "step out": "smoke",
     "homeboy": "dude",
     "homegirl": "girl",
+    'inter(nets|web(s)?)': 'Internet',
     "wat": "what",
     "chops": "skills",
     "foo": "skill",
