@@ -86,8 +86,7 @@ class KettleBot(IRCClient):
                         m = min(int(args[2]), 90)
                     except ValueError:
                         pass
-                self.quiet = datetime.datetime.now() + \
-                             datetime.timedelta(minutes=m)
+                self.quiet = datetime.datetime.now() + datetime.timedelta(minutes=m)
                 self.msg(channel, 'quiet time')
 
         # I provide a valuable service to the community!
@@ -99,15 +98,14 @@ class KettleBot(IRCClient):
                 if tag in tag_list:
                     tag_list.remove(tag)
             if tag_list:
-                response = ''.join('</'+tag+'>' for tag in tag_list[::-1])
+                response = ''.join('</' + tag + '>' for tag in tag_list[::-1])
                 self.can_talk(channel, response)
 
         elif user == 'decause':
             translated = translate_remyspeak(msg)
             display = self.karma.sub('', translated)
             if not msg.lower() == translated.lower():
-                self.can_talk(channel, 'What {} means is: {}'.format(
-                         user, display))
+                self.can_talk(channel, 'What {} means is: {}'.format(user, display))
 
     def action(self, user, channel, msg):
         if user == 'decause' and msg == '&':
