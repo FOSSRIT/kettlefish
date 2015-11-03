@@ -62,7 +62,7 @@ class KettleBot(IRCClient):
         user = user.split('!', 1)[0]
 
         # Regexes to handle non-kettlefish actions
-        shushify = re.match('{}: (un)?shush'.format(self.nickname), msg)
+        shushify = re.match('{}: (un)?shush(.*)'.format(self.nickname), msg)
         thanks = re.search('({0}.*thanks)|(thanks.*{0})'.format(self.nickname), msg)
         tag_list = self.xml.findall(msg.lower())
         untag_list = self.xml_close.findall(msg.lower())
@@ -73,14 +73,14 @@ class KettleBot(IRCClient):
 
         # Handle being told to shush or unshush
         elif shushify:
-            args = msg.split()
+            args = shushify.groups()
             # This tests the existence of the 'un-' prefix
-            if shushify.groups()[0]:
+            if args[0] == 'un':
                 self.quiet = None
                 self.msg(channel, 'universal translation matrix re-enabled')
             else:
                 m = 5
-                if len(args) > 2:
+                if args[1]:
                     try:
                         # Don't shush longer than 90 minutes
                         m = min(int(args[2]), 90)
