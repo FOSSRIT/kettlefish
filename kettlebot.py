@@ -31,8 +31,6 @@ class KettleBot(IRCClient):
     lineRate = 1
 
     def __init__(self, *args, **kwargs):
-        super(self, KettleBot).__init__(*args, **kwargs)
-
         with open('victims.json') as jfile:
             self.victims = json.load(jfile)
 
