@@ -32,7 +32,7 @@ class KettleBot(IRCClient):
 
     def __init__(self, *args, **kwargs):
         with open('victims.json') as jfile:
-            self.victims = json.load(jfile)
+            self.victims = set(json.load(jfile))
 
         self.quiet = None
         self.karma = re.compile(r'\+\+|--')
@@ -99,16 +99,13 @@ class KettleBot(IRCClient):
         # But not that valuable...
         elif optional:
             if optional.groups()[0] == 'out':
-                try:
-                    self.victims.remove(user)
-                except ValueError:
-                    pass
+                self.victims.discard(user)
                 self.describe(channel, 'recognizes that {} hates fun'.format(user))
             elif optional.groups()[0] == 'in':
-                self.victims.append(user)
+                self.victims.add(user)
                 self.describe(channel, 'has noted that {} is a cool person'.format(user))
             with open('victims.json', 'w') as jfile:
-                json.dump(self.victims, jfile)
+                json.dump(list(self.victims), jfile)
 
         elif tag_list:
             for tag in untag_list:
