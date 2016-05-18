@@ -64,9 +64,9 @@ class KettleBot(IRCClient):
         user = user.split('!', 1)[0]
 
         # Regexes to handle non-kettlefish actions
-        shushify = re.match('{}: (un)?shush(.*)'.format(self.nickname), msg)
-        optional = re.match('{}: opt (in|out)$'.format(self.nickname), msg)
-        thanks = re.search('({0}.*thanks)|(thanks.*{0})'.format(self.nickname), msg)
+        shushify = re.match('{}([:,])? (un)?(s)?hush(.*)'.format(self.nickname), msg)
+        optional = re.match('{}([:,])? opt (in|out)$'.format(self.nickname), msg)
+        thanks = re.search('({0}([:,])? thanks)|(thanks.*{0})'.format(self.nickname), msg)
         tag_list = self.xml.findall(msg.lower())
         untag_list = self.xml_close.findall(msg.lower())
 
