@@ -120,7 +120,7 @@ class KettleBot(IRCClient):
             with open('victims.json', 'w') as jfile:
                 json.dump(list(self.victims), jfile)
 
-        elif tag_list:
+        elif tag_list and user in self.victims:
             for tag in untag_list:
                 if tag in tag_list:
                     tag_list.remove(tag)
