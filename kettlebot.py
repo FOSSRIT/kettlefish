@@ -77,7 +77,7 @@ class KettleBot(IRCClient):
             self.msg(user, translate_remyspeak(msg))
 
         elif sauce:
-            self.msg(channel, sourceURL)
+            self.msg(channel, self.sourceURL)
 
         elif halp:
             self.can_talk(
