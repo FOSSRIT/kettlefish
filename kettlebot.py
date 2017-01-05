@@ -90,6 +90,14 @@ class KettleBot(IRCClient):
                 '{}: shush [minutes] -- prevent {} from speaking for a time '
                 '(default 5 minutes)'.format(user, self.nickname)
             )
+            self.can_talk(
+                channel,
+                "{}: source -- display {}'s source repository URL".format(user, self.nickname)
+            )
+            self.can_talk(
+                channel,
+                "{}: help -- display this message".format(user)
+            )
 
         # Handle being told to shush or unshush
         elif shushify:
