@@ -64,6 +64,7 @@ class KettleBot(IRCClient):
         user = user.split('!', 1)[0]
 
         # Regexes to handle non-kettlefish actions
+        sauce = re.match('{}([:,])? s(our|au)ce'.format(self.nickname), msg)
         halp = re.match('{}([:,])? h[ea]lp'.format(self.nickname), msg)
         shushify = re.match('{}([:,])? (un)?(s)?hush(.*)'.format(self.nickname), msg)
         optional = re.match('{}([:,])? opt (in|out)$'.format(self.nickname), msg)
@@ -74,6 +75,9 @@ class KettleBot(IRCClient):
         # Anything PM-ed to kettlefish will be translated
         if channel == self.nickname:
             self.msg(user, translate_remyspeak(msg))
+
+        elif sauce:
+            self.msg(channel, sourceURL)
 
         elif halp:
             self.can_talk(
