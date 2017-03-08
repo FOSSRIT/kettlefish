@@ -71,6 +71,7 @@ class KettleBot(IRCClient):
         thanks = re.search('({0}([:,])? thanks)|(thanks.*{0})'.format(self.nickname), msg)
         tag_list = self.xml.findall(msg.lower())
         untag_list = self.xml_close.findall(msg.lower())
+        love = re.match('{}: <3'.format(self.nickname), msg)
 
         # Anything PM-ed to kettlefish will be translated
         if channel == self.nickname:
@@ -145,6 +146,9 @@ class KettleBot(IRCClient):
             display = self.karma.sub('', translated)
             if not msg.lower() == translated.lower():
                 self.can_talk(channel, 'What {} means is: {}'.format(user, display))
+
+        elif love:
+            self.can_talk(channel, 'I <3 you too, {}'.format(user))
 
     def action(self, user, channel, msg):
         if user == 'decause' and msg == '&':
