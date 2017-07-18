@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
 
+from __future__ import print_function
 import argparse
 import collections
 import os
@@ -43,14 +44,13 @@ _REMYSPEAK.update({
     "motherfucker(s)?": r'fellow\1',
     "biz": "five",
     "hun(ny|do)": "a hundred",
-    "step out": "smoke",
+    "step out(side)?": "smoke",
     "homeboy": "dude",
     "homegirl": "girl",
     'inter(nets|web(s)?)': 'Internet',
     "wat": "what",
     "chops": "skills",
     "foo": "skill",
-    "step outside": "smoke",
     "fuck this": "education is important",
     "(<)?buz(z)+er(/?>)?": "nope",
     "lolz": "*giggle*",
@@ -85,6 +85,7 @@ def translate_remyspeak(text):
         text = item.sub(REMYSPEAK[item], text)
     return text
 
+
 if __name__ == '__main__':
     p = argparse.ArgumentParser()
     p.add_argument('text', nargs="+", help='Remyspeak to be translated.')
@@ -95,13 +96,10 @@ if __name__ == '__main__':
     args = p.parse_args()
 
     if not args.nohead:
-        print REMY
-    else:
-        print "\n"
+        print(REMY)
 
     result = translate_remyspeak(" ".join(args.text))
-    print result
-    print "\n"
+    print(result)
 
     if args.speak:
         os.system("espeak %r" % result)
